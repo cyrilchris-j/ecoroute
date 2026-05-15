@@ -24,7 +24,7 @@ export default function AboutPage() {
               <span className="text-gradient">EcoRoute</span>
             </h1>
             <p className="text-xl text-gray-400 max-w-2xl mx-auto">
-              We're on a mission to transform delivery logistics into a sustainable, efficient, and profitable business.
+              We&apos;re on a mission to transform delivery logistics into a sustainable, efficient, and profitable business.
             </p>
           </motion.div>
 

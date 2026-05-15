@@ -73,7 +73,7 @@ export default function ContactPage() {
             <h1 className="text-5xl md:text-6xl font-bold mb-4">
               <span className="text-white">Get in Touch</span>
               <br />
-              <span className="text-gradient">We'd Love to Hear From You</span>
+              <span className="text-gradient">We&apos;d Love to Hear From You</span>
             </h1>
             <p className="text-xl text-gray-400 max-w-2xl mx-auto">
               Have questions about EcoRoute? Our team is here to help.
