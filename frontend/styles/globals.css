@@ -1,0 +1,93 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #0a0e13;
+  color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(0, 208, 132, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 208, 132, 0.3);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 208, 132, 0.5);
+}
+
+/* Glassmorphism */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+}
+
+.glass-dark {
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+}
+
+/* Button styles */
+.btn-primary {
+  @apply px-6 py-3 bg-eco-green text-eco-dark font-semibold rounded-lg hover:bg-eco-lime transition-all duration-300 shadow-lg hover:shadow-eco-glow;
+}
+
+.btn-secondary {
+  @apply px-6 py-3 bg-transparent border-2 border-eco-green text-eco-green font-semibold rounded-lg hover:bg-eco-green hover:text-eco-dark transition-all duration-300;
+}
+
+.btn-tertiary {
+  @apply px-6 py-3 bg-eco-purple text-white font-semibold rounded-lg hover:bg-eco-teal transition-all duration-300;
+}
+
+/* Section styling */
+.section-padding {
+  @apply py-16 md:py-24 px-4 md:px-8;
+}
+
+/* Card styling */
+.card {
+  @apply glass p-6 rounded-lg hover:border-eco-green transition-all duration-300;
+}
+
+/* Text gradient */
+.text-gradient {
+  background: linear-gradient(135deg, #00d084 0%, #00d4ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
