@@ -1,3 +1,4 @@
+import { AuthProvider } from '../components/AuthProvider';
 import '../styles/globals.css'
 
 export const metadata = {
@@ -19,7 +20,9 @@ export default function RootLayout({ children }) {
         <link href='https://api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css' rel='stylesheet' />
       </head>
       <body className="bg-eco-darker text-white overflow-x-hidden">
-        {children}
+        <AuthProvider>
+          {children}
+        </AuthProvider>
       </body>
     </html>
   )

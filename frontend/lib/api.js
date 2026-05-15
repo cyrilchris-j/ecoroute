@@ -9,6 +9,18 @@ const api = axios.create({
   },
 })
 
+// Add a request interceptor to include the auth token
+api.interceptors.request.use(
+  (config) => {
+    const token = typeof window !== 'undefined' ? localStorage.getItem('auth_token') : null;
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
+
 // Routes API
 export const routesAPI = {
   getAll: () => api.get('/routes'),

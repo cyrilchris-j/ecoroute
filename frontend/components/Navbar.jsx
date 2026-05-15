@@ -2,10 +2,12 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, LogOut, User } from 'lucide-react'
+import { useAuth } from './AuthProvider'
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
+  const { user, logout } = useAuth()
 
   const menuItems = [
     { label: 'Home', href: '/' },
@@ -44,15 +46,41 @@ export default function Navbar() {
             ))}
           </div>
 
-          {/* CTA Buttons */}
+          {/* CTA Buttons / Auth State */}
           <div className="hidden md:flex items-center space-x-4">
-            <button className="btn-secondary text-sm">Sign In</button>
-            <button className="btn-primary text-sm">Get Started</button>
+            {user ? (
+              <div className="flex items-center space-x-4">
+                <div className="flex items-center space-x-2 bg-white/5 px-3 py-1.5 rounded-full border border-white/10">
+                  {user.photoURL ? (
+                    <img src={user.photoURL} alt={user.displayName} className="w-6 h-6 rounded-full border border-eco-green/50" />
+                  ) : (
+                    <User size={18} className="text-eco-green" />
+                  )}
+                  <span className="text-sm font-medium text-gray-200">{user.displayName?.split(' ')[0]}</span>
+                </div>
+                <button 
+                  onClick={logout}
+                  className="p-2 text-gray-400 hover:text-red-400 transition-colors"
+                  title="Logout"
+                >
+                  <LogOut size={20} />
+                </button>
+              </div>
+            ) : (
+              <>
+                <Link href="/login" className="text-sm font-medium text-gray-300 hover:text-white transition-colors">
+                  Sign In
+                </Link>
+                <Link href="/login" className="btn-primary text-sm">
+                  Get Started
+                </Link>
+              </>
+            )}
           </div>
 
           {/* Mobile Menu Toggle */}
           <button
-            className="md:hidden"
+            className="md:hidden text-gray-300"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -72,9 +100,30 @@ export default function Navbar() {
                 {item.label}
               </Link>
             ))}
-            <div className="pt-2 space-y-2">
-              <button className="btn-secondary w-full text-sm">Sign In</button>
-              <button className="btn-primary w-full text-sm">Get Started</button>
+            <div className="pt-4 border-t border-white/10">
+              {user ? (
+                <div className="space-y-4 px-3">
+                  <div className="flex items-center space-x-3">
+                    <img src={user.photoURL} alt={user.displayName} className="w-8 h-8 rounded-full" />
+                    <div>
+                      <p className="text-sm font-medium text-white">{user.displayName}</p>
+                      <p className="text-xs text-gray-400">{user.email}</p>
+                    </div>
+                  </div>
+                  <button onClick={logout} className="btn-secondary w-full text-sm flex items-center justify-center gap-2">
+                    <LogOut size={16} /> Sign Out
+                  </button>
+                </div>
+              ) : (
+                <div className="space-y-2 px-3">
+                  <Link href="/login" className="block text-center py-2 text-sm text-gray-300 border border-white/10 rounded">
+                    Sign In
+                  </Link>
+                  <Link href="/login" className="block text-center btn-primary py-2 text-sm rounded">
+                    Get Started
+                  </Link>
+                </div>
+              )}
             </div>
           </div>
         )}
